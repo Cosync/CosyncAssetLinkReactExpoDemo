@@ -1,6 +1,6 @@
 //
 //  VideoPlayer.js
-//  CosyncAssetLinkReactNativeDemo
+//  CosyncAssetLinkReactExpoDemo
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
 //  or more contributor license agreements.  See the NOTICE file
@@ -45,13 +45,14 @@ const VideoPlayer = props => {
     }
     
     const onVideoError = (err) => {
+        console.log('onVideoError error ', item.url);
         props.onLoadError(err);
     }
 
     return (
         <View style={styles.container}>
            
-            <Video 
+            <Video  
                 onLoad={onLoadEnd}
                 onLoadStart={onLoadStart}  
                 onError={onVideoError}    
@@ -81,16 +82,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center', 
     }, 
-    videoStyle: {  
-        marginTop: -50,
-        width: 380,
-        height: 380,
+    videoStyle: { 
+        width: 250,
+        height: 250,
         alignItems: 'center', 
-    },
-    activityIndicator: {
-        alignItems: 'center', 
-        height: 80,
-        marginTop: -130
-        
     }
   });

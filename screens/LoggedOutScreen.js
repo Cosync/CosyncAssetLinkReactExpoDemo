@@ -1,5 +1,6 @@
+ 
 //
-//  Request.js
+//  LoggedOutScreen.js
 //  CosyncAssetLinkReactExpoDemo
 //
 //  Licensed to the Apache Software Foundation (ASF) under one
@@ -23,25 +24,22 @@
 //  Copyright © 2023 cosync. All rights reserved.
 //
 
+import React from 'react';  
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import LoginScreen from './LoginScreen';
+import RegisterScreen from './RegisterScreen';
 
-const Request = (url, opts={}, onProgress) => {
+const LoggedOutScreen = props => { 
 
-    return new Promise( (res, rej)=>{
+    const Tab = createBottomTabNavigator();
 
-        var xhr = new XMLHttpRequest();
-        xhr.open(opts.method || 'get', url);
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="Log In" component={LoginScreen} />
+            <Tab.Screen name="Sign Up" component={RegisterScreen} />
+        </Tab.Navigator>
+    );
 
-        for (var k in opts.headers||{}){
-            xhr.setRequestHeader(k, opts.headers[k]);
-        }
-
-        xhr.onload = e => res(e.target);
-        xhr.onerror = rej;
-
-        if (xhr.upload && onProgress)  xhr.upload.onprogress = onProgress; // event.loaded / event.total * 100 ; //event.lengthComputable
-
-        xhr.send(opts.body);
-    });
 }
 
-export default Request
+export default LoggedOutScreen;
